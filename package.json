@@ -1,0 +1,22 @@
+{
+  "name": "cash-register",
+  "repository": {
+    "type": "git",
+    "url": "git@git.delormejonathan.fr:csia-4jml/cash-register.git"
+  },
+  "author": "4JML",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp-rename": "^1.2.0",
+    "gulp-plumber": "^0.6.1",
+    "gulp": "^3.6.1",
+    "gulp-less": "^1.2.3",
+    "gulp-concat": "~2.2.0",
+    "gulp-symlink": "^1.0.1"
+  },
+  "scripts": {
+    "install": "gulp",
+    "build": "gulp",
+    "watch": "gulp watch"
+  }
+}
