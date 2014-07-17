@@ -1,7 +1,7 @@
 var cashRegister = angular.module('cashRegister' , [ 'ngRoute' , 'restangular' ]);
 
 cashRegister.run(function($rootScope, Restangular, AuthService) {
-	//AuthService.login(null);
+	AuthService.login(null);
 });
 
 cashRegister.config(['$routeProvider',
@@ -16,12 +16,9 @@ cashRegister.config(['$routeProvider',
 	}
 ]);
 
-// radianDrive.config(function(RestangularProvider) {
-// 	RestangularProvider.setBaseUrl(API_URL);
-// 	RestangularProvider.setDefaultHeaders({
-// 		'radian_app': 'radian_drive',
-// 	});
-// 	RestangularProvider.setDefaultHttpFields({
-// 		'withCredentials': true
-// 	});
-// });
+cashRegister.config(function(RestangularProvider) {
+	RestangularProvider.setBaseUrl(API_URL);
+	RestangularProvider.setDefaultHttpFields({
+		'withCredentials': true
+	});
+});

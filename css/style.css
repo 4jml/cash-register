@@ -1,73 +1,71 @@
-		body{
-			-webkit-user-select: none;  /* Chrome all / Safari all */
-  			-moz-user-select: none;     /* Firefox all */
-  			-ms-user-select: none;  
-		}
+body{
+	-webkit-user-select: none;  /* Chrome all / Safari all */
+	-moz-user-select: none;     /* Firefox all */
+	-ms-user-select: none;  
+}
 
 
 
-		.cwbts {
-			-moz-user-select: none;
-			display: table-cell;
-			vertical-align: middle;
-			float:left;
-			margin:25px 10px 0 0;
-			padding:5px 50px;
-			font-size: 40px;
-			color: white;
-		}
+.cwbts {
+	-moz-user-select: none;
+	display: table-cell;
+	vertical-align: middle;
+	float:left;
+	margin:25px 10px 0 0;
+	padding:5px 50px;
+	font-size: 40px;
+	color: white;
+}
 
-		.centerCashRegister{
- 			margin-left: 20px;
-    		width: 1400px;
-		}
+.centerCashRegister{
+	margin-left: 20px;
+	width: 1400px;
+}
 
-		.numeriquePad{
-			vertical-align: center;
-			margin:50px 10px 0 0;
-			padding:5px  45px;
-			width: 480px;
-			float:left;
-		}
+.numeriquePad{
+	vertical-align: center;
+	margin:50px 10px 0 0;
+	padding:5px  45px;
+	width: 480px;
+	float:left;
+}
 
-		.tableSousTotal{
+.tableSousTotal{
 
-		float:left;
-		width: 760px;
-						}
+	float:left;
+	width: 760px;
+}
 
-		.tableProduct{
-			width: 535px;
-			float:left;
-			margin-top: 55px;
-		}
+.tableProduct{
+	width: 535px;
+	float:left;
+	margin-top: 55px;
+}
 
-		.buttonColone{
-			float:right;
-			margin-top: 55px;
-			width: 120px;
-		}
+.buttonColone{
+	float:right;
+	margin-top: 55px;
+	width: 120px;
+}
 
-		input.trans{
-		background-color:transparent;
-		border: none;
-		}
+input.trans{
+	background-color:transparent;
+	border: none;
+}
 
-		input.transQuantity{
-		background-color:transparent;
-		border: none;
-		width:10px;
-		}
+input.transQuantity{
+	background-color:transparent;
+	border: none;
+	width:10px;
+}
 
-		.plusMinus{
-			float: right;
-			font-size: 20px;
-		}
+.plusMinus{
+	float: right;
+	font-size: 20px;
+}
 
-		.divTicket{
-			float: right;
-			font-size: 20px;
-			visibility: hidden;
-		}
-
-
+.divTicket{
+	float: right;
+	font-size: 20px;
+	visibility: hidden;
+}

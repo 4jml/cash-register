@@ -1,20 +1,24 @@
-cashRegister.factory('AuthService', function ($rootScope, Restangular, SessionService) {
+cashRegister.factory('AuthService', function ($rootScope, $http, SessionService, AUTH_EVENTS, Restangular) {
 	return {
 		login: function (credentials) {
 			return Restangular
-			.all('customers/auth')
-			.post(credentials)
+			.all('auth')
+			.customPOST(credentials, null, null, { radian_app : 'radian_drivemanager'})
 			.then(
-				function (customer) {
-					SessionService.create(customer);
+				function (res) {
+					SessionService.create(res.id, res.username, res.role);
+					$rootScope.$broadcast(AUTH_EVENTS.loginAttempt);
 				},
-				function (customer) {
-					SessionService.create({ id : null, lastname: null, firstname: null });
+				function (res) {
+					SessionService.create(null, null, null);
+					$rootScope.$broadcast(AUTH_EVENTS.loginAttempt);
 				}
 			);
+
+			$rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
 		},
 		isAuthenticated: function () {
-			return (SessionService.id > 0);
+			return !!SessionService.id;
 		},
 		isAuthorized: function (authorizedRoles) {
 			if (!angular.isArray(authorizedRoles)) {

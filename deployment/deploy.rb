@@ -12,5 +12,5 @@ set :linked_files, %w{conf.js}
 set :linked_dirs, %w{}
 
 before 'deploy:starting', 'radian:parameters'
-before 'deploy:publishing', 'npm:build'
+# before 'deploy:publishing', 'npm:build'
 after 'deploy:finishing', 'deploy:cleanup'

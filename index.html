@@ -1,214 +1,189 @@
-<!DOCTYPE html>
+<!doctype html>
 <html ng-app="cashRegister" ng-controller="ApplicationController">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/metro-bootstrap.css">
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/others.css">
 	<link href="css/iconFont.css" rel="stylesheet">
 
 </head>
-	<body class="metro">
+<body class="metro">
 
-	
+	<div class="wrapper" ng-show="isAuthenticated()">
 
-	<nav class="navigation-bar dark">
-		<div class="navigation-bar-content">
+		<nav class="navigation-bar dark">
+			<div class="navigation-bar-content">
+				<button class="element image-button place-left" id="createFlatWindow" class="button">Ca$h Registrer</button>
+
+				<button class="element image-button image-left place-right">
+					{{ app.user.username }}
+				</button>
+			</div>
+		</nav>
+
+		<div class="centerCashRegister">
+			<div class="numeriquePad">
+				<div data-click="transform" class="tile bg-lightBlue" ng-click="numpad(7)">
+					<span class="cwbts">7</span>
+				</div>
+				<div class="tile bg-lightBlue " ng-click="numpad(8)">
+
+					<span class="cwbts" >8</span>
+
+				</div>
+				<div class="tile bg-lightBlue " ng-click="numpad(9)">
+
+					<span class="cwbts" >9</span>
+
+				</div>
+				<div class="tile bg-lightBlue " ng-click="numpad(4)">
+
+					<span class="cwbts" >4</span>
+
+				</div>
+
+				<div class="tile bg-lightBlue " ng-click="numpad(5)">
+
+					<span class="cwbts" >5</span>
+
+				</div>
+
+				<div class="tile bg-lightBlue " ng-click="numpad(6)">
+
+					<span class="cwbts" >6</span>
+
+				</div>
+				<div class="tile bg-lightBlue " ng-click="numpad(1)">
+
+					<span class="cwbts" >1</span>
+
+				</div>
+				<div class="tile bg-lightBlue " ng-click="numpad(2)">
+
+					<span class="cwbts" >2</span>
+
+				</div>
+				<div class="tile bg-lightBlue " ng-click="numpad(3)">
+
+					<span class="cwbts" >3</span>
+
+				</div>
+
+				<div class="tile double bg-lightBlue" ng-click="numpad(0)">
+
+					<span class="cwbts">0</span>
+
+				</div>
+
+				<div class="tile bg-lightRed " ng-click="correct()">
+
+					<span class="cwbts" >C</span>
+
+				</div>
+
+				<div class="tableSousTotal">
+
+					<table class="table bordered hovered">
+						<thead>
+							<tr class="info">
+								<th class="text-left">TOTAL</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="error">
+								<td class="right">{{ totalCommande }} €</td>
+							</tr>
+						</tbody>
+					</table>
+
+				</div>
+
+			</div>
+
+			<div class="tableProduct">
+				<table class="table striped bordered hovered">
+					<thead>
+						<tr class="info">
+							<th class="text-left">Code Barre</th>
+							<th class="text-left">Désignation</th>
+							<th class="text-left">Quantité</th>
+							<th class="text-left">Prix Unitaire</th>
+							<th class="text-left">Sous-total</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr class="success" ng-repeat="product in products">
+							<td>{{ product.barcode }} <i ng-click="delete(product)" class="icon-cancel-2 on-right"></i></td>
+							<td class="right">{{ product.name }}</td>
+							<td class="right">
+								{{ product.quantity }}
+							</td>
+							<td class="right" >{{ product.price }} €</td>
+							<td class="right">{{ product.total }} €</td>
+							<td ng-click="removeQuantity(product)" class="right">
+								<i  class="icon-minus-2 on-right"></i>
+							</td>
+							<td></td>
+							<td ng-click="addQuantity(product)" class="right">
+								<i  class="icon-plus-2 on-right"></i>
+							</td>
+
+						</tr>
 
 
-			<button class="element image-button place-left" id="createFlatWindow" class="button">Ca$h Registrer</button>
 
-			<button class="element image-button image-left place-right">
-				Marie JAIRATEMONBAC
-				<img src="images/me.jpg">
-			</button>
+
+						<tr class="warning">
+							<td><input ng-model="barcode" id="barcode" class="trans"> </input></td>
+							<td class="right"></td>
+							<td class="right">
+								{{ quantity }}
+
+							</td>
+							<td class="right"></td>
+							<td class="right"></td>
+							<td ng-click="removeQuantityNewLine()" class="right">
+
+								<i  class="icon-minus-2 on-right"></i>
+							</td>
+							<td></td>
+							<td ng-click="addQuantityNewLine()" class="right">
+								<i  class="icon-plus-2 on-right"></i>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+
+
+			<div class="buttonColone">
+				<div ng-click="print()" class="tile bg-lightBlue">
+					<div class="tile-content icon">
+						<i class="icon-printer"></i>
+					</div>
+				</div>
+
+				<div ng-click="alert()" class="tile bg-lightBlue">
+					<div class="tile-content icon">
+						<i class="icon-bell"></i>
+					</div>
+				</div>
+				<div ng-click="paiment()" class="tile bg-lightBlue">
+					<div class="tile-content icon">
+						<i class="icon-dollar-2"></i>
+					</div>
+				</div>
+			</div>
 		</div>
-	</div>
-</nav>
-
-<div class="centerCashRegister">
-
-	<div class="numeriquePad">
 
 
-		<div data-click="transform" class="tile bg-lightBlue" ng-click="numpad(7)">
-
-		                <span class="cwbts">7</span>
-		            </div>
-
-
-
-		<div class="tile bg-lightBlue " ng-click="numpad(8)">
-
-		  <span class="cwbts" >8</span>
-
-		</div>
-		<div class="tile bg-lightBlue " ng-click="numpad(9)">
-
-		  <span class="cwbts" >9</span>
-
-		</div>
-		<div class="tile bg-lightBlue " ng-click="numpad(4)">
-
-		  <span class="cwbts" >4</span>
-
-		</div>
-
-		<div class="tile bg-lightBlue " ng-click="numpad(5)">
-
-		  <span class="cwbts" >5</span>
-
-		</div>
-
-		<div class="tile bg-lightBlue " ng-click="numpad(6)">
-
-		  <span class="cwbts" >6</span>
-
-		</div>
-		<div class="tile bg-lightBlue " ng-click="numpad(1)">
-
-		  <span class="cwbts" >1</span>
-
-		</div>
-		<div class="tile bg-lightBlue " ng-click="numpad(2)">
-
-		  <span class="cwbts" >2</span>
-
-		</div>
-		<div class="tile bg-lightBlue " ng-click="numpad(3)">
-
-		  <span class="cwbts" >3</span>
-
-		</div>
-
-		<div class="tile double bg-lightBlue" ng-click="numpad(0)">
-
-		  <span class="cwbts">0</span>
-
-		</div>
-
-		<div class="tile bg-lightRed " ng-click="correct()">
-
-		  <span class="cwbts" >C</span>
-
-		</div>
-
-		<div class="tableSousTotal">
-
-			<table class="table bordered hovered">
-				<thead>
-					<tr class="info">
-						<th class="text-left">TOTAL</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr class="error">
-						<td class="right">{{ totalCommande }}</td>
-					<tr>
-				<tbody>
-			</table>
-
-		</div>
-
-	</div>
-
-		<div class="tableProduct">
+		<div id="popUpTicket" class="divTicket">
 			<table class="table striped bordered hovered">
 				<thead>
-					<tr class="info">
-						<th class="text-left">Code Barre</th>
-						<th class="text-left">Désignation</th>				
-						<th class="text-left">Quantité</th>
-						<th class="text-left">Prix Unitaire</th>
-						<th class="text-left">Sous-total</th>
-
-					</tr>
-				</thead>
-
-				<tbody>
-					<tr class="success" ng-repeat="product in products">
-						<td>{{ product.barcode }} <i ng-click="delete(product)" class="icon-cancel-2 on-right"></i></td>
-						<td class="right">{{ product.reference }}</td>
-						<td class="right">
-								{{ product.quantity }}					
-						</td>
-						<td class="right" >{{ product.price }}</td>
-						<td class="right">{{ product.total }}</td>
-						<td ng-click="removeQuantity(product)" class="right">
-							<i  class="icon-minus-2 on-right"></i>
-						</td>
-						<td></td>
-						<td ng-click="addQuantity(product)" class="right">
-							<i  class="icon-plus-2 on-right"></i>
-						</td>
-						
-					</tr>
-
-
-
-
-					<tr class="warning">
-						<td><input ng-model="barcode" class="trans"> </input></td>
-						<td class="right"></td>
-						<td class="right">
-							{{ quantity }}
-							
-						</td>
-						<td class="right"></td>
-						<td class="right"></td>
-						</td>
-						<td ng-click="removeQuantityNewLine()" class="right">
-
-							<i  class="icon-minus-2 on-right"></i>
-						</td>
-						<td></td>
-						<td ng-click="addQuantityNewLine()" class="right">
-							<i  class="icon-plus-2 on-right"></i></td>
-						
-					</tr>
-
-
-					
-
-
-
-
-				</tbody>
-			</table>
-
-
-		</div>
-
-
-
-	<div class="buttonColone">
-
-		<div ng-click="print()" class="tile bg-lightBlue">
-                        <div class="tile-content icon">
-                            <i class="icon-printer"></i>
-                        </div>
-        </div>
-
-        <div ng-click="alert()" class="tile bg-lightBlue">
-                        <div class="tile-content icon">
-                            <i class="icon-bell"></i>
-                        </div>
-        </div>
-        <div ng-click="paiment()" class="tile bg-lightBlue">
-                        <div class="tile-content icon">
-                            <i class="icon-dollar-2"></i>
-                        </div>
-        </div>
-		
-	</div>
-		
-
-
-</div>
-
-
-<div id="popUpTicket" class="divTicket">
-	<table class="table striped bordered hovered">
-				<thead>
 					<tr>
 						<th class="text-left">Code Barre</th>
 						<th class="text-left">Désignation</th>				
@@ -220,51 +195,64 @@
 				</thead>
 
 				<tbody>
-					<tr  ng-repeat="product in products">
+					<tr ng-repeat="product in products">
 						<td>{{ product.barcode }} <i ng-click="delete(product)" class="icon-cancel-2 on-right"></i></td>
 						<td class="right">{{ product.reference }}</td>
 						<td class="right">
-								{{ product.quantity }}					
+							{{ product.quantity }}
 						</td>
 						<td class="right" >{{ product.price }}</td>
 						<td class="right">{{ product.total }}</td>
-						
+
 					</tr>
-					
-
-
-
-
 				</tbody>
 			</table>
+		</div>
+	</div>
+	<div class="login" ng-show="! isAuthenticated()" ng-controller="LoginController">
+		<div class="form-box" id="login-box">
+			<div class="header">Connexion à l'espace privé</div>
+			<form ng-submit="login(credentials)" method="post" novalidate>
+				<div class="body bg-gray">
+					<div class="form-group">
+						<input type="text" ng-model="credentials.username" name="username" class="form-control" placeholder="Nom d'utilisateur" autofocus>
+					</div>
+					<div class="form-group">
+						<input type="password" ng-model="credentials.password" name="password" class="form-control" placeholder="Mot de passe">
+					</div>
+					<div class="form-group">
+						<input type="checkbox" name="remember_me"> Se rappeler
+					</div>
+				</div>
+				<div class="footer">
+					<button type="submit" class="btn bg-olive btn-block">Connexion</button>
 
+					<p><a href="#">J'ai oublié mon mot de passe</a></p>
+				</div>
+			</form>
+		</div>
+	</div>
 
-
+	<div class="loading" ng-show="! isLoaded">
+		<h1>Cash Register</h1>
+		<img src="images/loading.gif">
+	</div>
 </div>
-		
 
-
-</div>
-
-
-                    
-
-
-                    
-	<script src="js/jquery/jquery.min.js"></script>
-	<script src="js/moment.i8n.min.js"></script>
-	<script src="js/angular.min.js"></script>
-	<script src="js/angular-route.min.js"></script>
-	<script src="js/lodash.min.js"></script>
-	<script src="js/restangular.min.js"></script>
-	<script src="app/app.js"></script>
-	<script src="app/services/AuthService.js"></script>
-	<script src="app/services/SessionService.js"></script>
-	<script src="app/controllers/ApplicationController.js"></script>
-
-
-      
-
+<script src="js/jquery/jquery.min.js"></script>
+<script src="js/moment.i8n.min.js"></script>
+<script src="js/angular.min.js"></script>
+<script src="js/angular-route.min.js"></script>
+<script src="js/lodash.min.js"></script>
+<script src="js/restangular.min.js"></script>
+<script src="conf.js"></script>
+<script src="app/app.js"></script>
+<script src="app/constants/AuthEvents.js"></script>
+<script src="app/constants/UserRoles.js"></script>
+<script src="app/services/AuthService.js"></script>
+<script src="app/services/SessionService.js"></script>
+<script src="app/controllers/ApplicationController.js"></script>
+<script src="app/controllers/LoginController.js"></script>
 
 </body>
 </html>
