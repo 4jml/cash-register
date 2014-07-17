@@ -15,6 +15,7 @@ cashRegister.controller('ApplicationController', function ($scope, Restangular, 
 	$scope.barcode = '';
 	$scope.quantity = 1;
 	$scope.price = 100;
+	
 
 	$scope.totalCommande = 0;
 	$scope.products = [];
@@ -38,12 +39,13 @@ cashRegister.controller('ApplicationController', function ($scope, Restangular, 
 			})
 			if (used === false) {
 				$scope.products.push({ barcode :$scope.barcode, price : $scope.price, quantity: $scope.quantity, total :$scope.quantity*$scope.price })
-
+				$scope.totalCommande = $scope.totalCommande + $scope.quantity*$scope.price
 			}
 			else {
-				$scope.products[used].quantity++;
-
+				$scope.products[used].quantity =$scope.products[used].quantity + $scope.quantity;
+				$scope.totalCommande = $scope.totalCommande - $scope.products[used].total;
 				$scope.products[used].total = $scope.products[used].quantity * $scope.products[used].price;
+				$scope.totalCommande = $scope.totalCommande + $scope.products[used].total;
 			}
 			
 
@@ -92,6 +94,20 @@ cashRegister.controller('ApplicationController', function ($scope, Restangular, 
 		$scope.quantity = $scope.quantity -1;
 		}
 	}
+
+	$scope.paiment = function () {
+		alert("Paiment éffectué")
+	}
+
+	$scope.alert = function () {
+		alert("Un agent va intervenir")
+	}
+
+	$scope.print = function () {
+		alert("Le ticket est en cours d'impression")
+	}
+
+
 
 	$scope.$watch('barcode', $scope.check);
 	$scope.$watch('quantity', $scope.check);

@@ -27,159 +27,228 @@
 
 <div class="centerCashRegister">
 
-<div class="numeriquePad">
+	<div class="numeriquePad">
 
 
-<div data-click="transform" class="tile bg-lightBlue" ng-click="numpad(7)">
+		<div data-click="transform" class="tile bg-lightBlue" ng-click="numpad(7)">
 
-                <span class="cwbts">7</span>
-            </div>
-
-
-
-<div class="tile bg-lightBlue " ng-click="numpad(8)">
-
-  <span class="cwbts" >8</span>
-
-</div>
-<div class="tile bg-lightBlue " ng-click="numpad(9)">
-
-  <span class="cwbts" >9</span>
-
-</div>
-<div class="tile bg-lightBlue " ng-click="numpad(4)">
-
-  <span class="cwbts" >4</span>
-
-</div>
-
-<div class="tile bg-lightBlue " ng-click="numpad(5)">
-
-  <span class="cwbts" >5</span>
-
-</div>
-
-<div class="tile bg-lightBlue " ng-click="numpad(6)">
-
-  <span class="cwbts" >6</span>
-
-</div>
-<div class="tile bg-lightBlue " ng-click="numpad(1)">
-
-  <span class="cwbts" >1</span>
-
-</div>
-<div class="tile bg-lightBlue " ng-click="numpad(2)">
-
-  <span class="cwbts" >2</span>
-
-</div>
-<div class="tile bg-lightBlue " ng-click="numpad(3)">
-
-  <span class="cwbts" >3</span>
-
-</div>
-
-<div class="tile double bg-lightBlue" ng-click="numpad(0)">
-
-  <span class="cwbts">0</span>
-
-</div>
-
-<div class="tile bg-lightRed " ng-click="correct()">
-
-  <span class="cwbts" >C</span>
-
-</div>
-
-<div class="tableSousTotal">
-
-	<table class="table bordered hovered">
-		<thead>
-			<tr class="info">
-				<th class="text-left">TOTAL</th>
-			</tr>
-		</thead>
-		<tbody>
-			<tr class="error">
-				<td class="right">{{ totalCommande }}</td>
-			<tr>
-		<tbody>
-	</table>
-
-</div>
-</div>
-
-<div class="tableProduct">
-	<table class="table striped bordered hovered">
-		<thead>
-			<tr class="info">
-				<th class="text-left">Code Barre</th>
-				<th class="text-left">Désignation</th>				
-				<th class="text-left">Quantité</th>
-				<th class="text-left">Prix Unitaire</th>
-				<th class="text-left">Sous-total</th>
-
-			</tr>
-		</thead>
-
-		<tbody>
-			<tr class="success" ng-repeat="product in products">
-				<td>{{ product.barcode }} <i ng-click="delete(product)" class="icon-cancel-2 on-right"></i></td>
-				<td class="right">{{ product.reference }}</td>
-				<td class="right">
-						{{ product.quantity }}					
-				</td>
-				<td class="right">{{ product.price }}</td>
-				<td class="right">{{ product.total }}</td>
-				<td class="right">
-					<i ng-click="removeQuantity(product)" class="icon-minus-2 on-right"></i>
-				</td>
-				<td class="right">
-					<i ng-click="addQuantity(product)" class="icon-plus-2 on-right"></i>
-				</td>
-				
-			</tr>
+		                <span class="cwbts">7</span>
+		            </div>
 
 
 
+		<div class="tile bg-lightBlue " ng-click="numpad(8)">
 
-			<tr class="warning">
-				<td><input ng-model="barcode" class="trans"> </input></td>
-				<td class="right"></td>
-				<td class="right">
-					{{ quantity }}
+		  <span class="cwbts" >8</span>
+
+		</div>
+		<div class="tile bg-lightBlue " ng-click="numpad(9)">
+
+		  <span class="cwbts" >9</span>
+
+		</div>
+		<div class="tile bg-lightBlue " ng-click="numpad(4)">
+
+		  <span class="cwbts" >4</span>
+
+		</div>
+
+		<div class="tile bg-lightBlue " ng-click="numpad(5)">
+
+		  <span class="cwbts" >5</span>
+
+		</div>
+
+		<div class="tile bg-lightBlue " ng-click="numpad(6)">
+
+		  <span class="cwbts" >6</span>
+
+		</div>
+		<div class="tile bg-lightBlue " ng-click="numpad(1)">
+
+		  <span class="cwbts" >1</span>
+
+		</div>
+		<div class="tile bg-lightBlue " ng-click="numpad(2)">
+
+		  <span class="cwbts" >2</span>
+
+		</div>
+		<div class="tile bg-lightBlue " ng-click="numpad(3)">
+
+		  <span class="cwbts" >3</span>
+
+		</div>
+
+		<div class="tile double bg-lightBlue" ng-click="numpad(0)">
+
+		  <span class="cwbts">0</span>
+
+		</div>
+
+		<div class="tile bg-lightRed " ng-click="correct()">
+
+		  <span class="cwbts" >C</span>
+
+		</div>
+
+		<div class="tableSousTotal">
+
+			<table class="table bordered hovered">
+				<thead>
+					<tr class="info">
+						<th class="text-left">TOTAL</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr class="error">
+						<td class="right">{{ totalCommande }}</td>
+					<tr>
+				<tbody>
+			</table>
+
+		</div>
+
+	</div>
+
+		<div class="tableProduct">
+			<table class="table striped bordered hovered">
+				<thead>
+					<tr class="info">
+						<th class="text-left">Code Barre</th>
+						<th class="text-left">Désignation</th>				
+						<th class="text-left">Quantité</th>
+						<th class="text-left">Prix Unitaire</th>
+						<th class="text-left">Sous-total</th>
+
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr class="success" ng-repeat="product in products">
+						<td>{{ product.barcode }} <i ng-click="delete(product)" class="icon-cancel-2 on-right"></i></td>
+						<td class="right">{{ product.reference }}</td>
+						<td class="right">
+								{{ product.quantity }}					
+						</td>
+						<td class="right" >{{ product.price }}</td>
+						<td class="right">{{ product.total }}</td>
+						<td ng-click="removeQuantity(product)" class="right">
+							<i  class="icon-minus-2 on-right"></i>
+						</td>
+						<td></td>
+						<td ng-click="addQuantity(product)" class="right">
+							<i  class="icon-plus-2 on-right"></i>
+						</td>
+						
+					</tr>
+
+
+
+
+					<tr class="warning">
+						<td><input ng-model="barcode" class="trans"> </input></td>
+						<td class="right"></td>
+						<td class="right">
+							{{ quantity }}
+							
+						</td>
+						<td class="right"></td>
+						<td class="right"></td>
+						</td>
+						<td ng-click="removeQuantityNewLine()" class="right">
+
+							<i  class="icon-minus-2 on-right"></i>
+						</td>
+						<td></td>
+						<td ng-click="addQuantityNewLine()" class="right">
+							<i  class="icon-plus-2 on-right"></i></td>
+						
+					</tr>
+
+
 					
-				</td>
-				<td class="right"></td>
-				<td class="right"></td>
-				</td>
-				<td class="right">
-
-					<i ng-click="removeQuantityNewLine()" class="icon-minus-2 on-right"></i>
-				</td>
-				<td class="right">
-					<i ng-click="addQuantityNewLine()" class="icon-plus-2 on-right"></i></td>
-				
-			</tr>
-
-
-			
 
 
 
 
-		</tbody>
-	</table>
+				</tbody>
+			</table>
+
+
+		</div>
+
+
+
+	<div class="buttonColone">
+
+		<div ng-click="print()" class="tile bg-lightBlue">
+                        <div class="tile-content icon">
+                            <i class="icon-printer"></i>
+                        </div>
+        </div>
+
+        <div ng-click="alert()" class="tile bg-lightBlue">
+                        <div class="tile-content icon">
+                            <i class="icon-bell"></i>
+                        </div>
+        </div>
+        <div ng-click="paiment()" class="tile bg-lightBlue">
+                        <div class="tile-content icon">
+                            <i class="icon-dollar-2"></i>
+                        </div>
+        </div>
+		
+	</div>
+		
 
 
 </div>
 
 
+<div id="popUpTicket" class="divTicket">
+	<table class="table striped bordered hovered">
+				<thead>
+					<tr>
+						<th class="text-left">Code Barre</th>
+						<th class="text-left">Désignation</th>				
+						<th class="text-left">Quantité</th>
+						<th class="text-left">Prix Unitaire</th>
+						<th class="text-left">Sous-total</th>
+
+					</tr>
+				</thead>
+
+				<tbody>
+					<tr  ng-repeat="product in products">
+						<td>{{ product.barcode }} <i ng-click="delete(product)" class="icon-cancel-2 on-right"></i></td>
+						<td class="right">{{ product.reference }}</td>
+						<td class="right">
+								{{ product.quantity }}					
+						</td>
+						<td class="right" >{{ product.price }}</td>
+						<td class="right">{{ product.total }}</td>
+						
+					</tr>
+					
+
+
+
+
+				</tbody>
+			</table>
 
 
 
 </div>
+		
+
+
+</div>
+
+
+                    
+
 
                     
 	<script src="js/jquery/jquery.min.js"></script>
@@ -192,6 +261,9 @@
 	<script src="app/services/AuthService.js"></script>
 	<script src="app/services/SessionService.js"></script>
 	<script src="app/controllers/ApplicationController.js"></script>
+
+
+      
 
 
 </body>

@@ -1,4 +1,12 @@
-.cwbts {
+		body{
+			-webkit-user-select: none;  /* Chrome all / Safari all */
+  			-moz-user-select: none;     /* Firefox all */
+  			-ms-user-select: none;  
+		}
+
+
+
+		.cwbts {
 			-moz-user-select: none;
 			display: table-cell;
 			vertical-align: middle;
@@ -6,6 +14,12 @@
 			margin:25px 10px 0 0;
 			padding:5px 50px;
 			font-size: 40px;
+			color: white;
+		}
+
+		.centerCashRegister{
+ 			margin-left: 20px;
+    		width: 1400px;
 		}
 
 		.numeriquePad{
@@ -14,6 +28,24 @@
 			padding:5px  45px;
 			width: 480px;
 			float:left;
+		}
+
+		.tableSousTotal{
+
+		float:left;
+		width: 760px;
+						}
+
+		.tableProduct{
+			width: 535px;
+			float:left;
+			margin-top: 55px;
+		}
+
+		.buttonColone{
+			float:right;
+			margin-top: 55px;
+			width: 120px;
 		}
 
 		input.trans{
@@ -27,24 +59,15 @@
 		width:10px;
 		}
 
-		.tableProduct{
-			width: 535px;
-			float:left;
-			margin-top: 55px;
-		}
-
-		.tableSousTotal{
-
-			float:left;
-			width: 760px;
-		}
-
-		.centerCashRegister{
- 			margin-left: 20px;
-    		width: 1400px;
-		}
-
 		.plusMinus{
 			float: right;
 			font-size: 20px;
 		}
+
+		.divTicket{
+			float: right;
+			font-size: 20px;
+			visibility: hidden;
+		}
+
+
