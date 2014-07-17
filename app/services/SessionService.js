@@ -1,4 +1,4 @@
-radianDrive.service('SessionService', function () {
+cashRegister.service('SessionService', function () {
 	this.create = function (customer) {
 		this.id = customer.id;
 		this.lastname = customer.lastname;

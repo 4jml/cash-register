@@ -1,0 +1,50 @@
+.cwbts {
+			-moz-user-select: none;
+			display: table-cell;
+			vertical-align: middle;
+			float:left;
+			margin:25px 10px 0 0;
+			padding:5px 50px;
+			font-size: 40px;
+		}
+
+		.numeriquePad{
+			vertical-align: center;
+			margin:50px 10px 0 0;
+			padding:5px  45px;
+			width: 480px;
+			float:left;
+		}
+
+		input.trans{
+		background-color:transparent;
+		border: none;
+		}
+
+		input.transQuantity{
+		background-color:transparent;
+		border: none;
+		width:10px;
+		}
+
+		.tableProduct{
+			width: 535px;
+			float:left;
+			margin-top: 55px;
+		}
+
+		.tableSousTotal{
+
+			float:left;
+			width: 760px;
+		}
+
+		.centerCashRegister{
+ 			margin-left: 20px;
+    		width: 1400px;
+		}
+
+		.plusMinus{
+			float: right;
+			font-size: 20px;
+		}

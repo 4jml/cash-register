@@ -1,4 +1,4 @@
-radianDrive.factory('AuthService', function ($rootScope, Restangular, SessionService) {
+cashRegister.factory('AuthService', function ($rootScope, Restangular, SessionService) {
 	return {
 		login: function (credentials) {
 			return Restangular

@@ -1,33 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="cashRegister" ng-controller="ApplicationController">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<link rel="stylesheet" href="css/metro-bootstrap.css">
-	<script src="js/jquery/jquery.min.js"></script>
-	<script src="js/jquery/jquery.widget.min.js"></script>
-	<script src="js/metro/metro.min.js"></script>
-	<script src="js/metro/metro-times.js"></script>
+	<link rel="stylesheet" href="css/style.css">
+	<link href="css/iconFont.css" rel="stylesheet">
+
 </head>
-<body class="metro">
+	<body class="metro">
 
-	<style>
-		.cwbts {
-			-moz-user-select: none;
-			display: table-cell;
-			vertical-align: middle;
-			float:left;
-			margin:25px 10px 0 0;
-			padding:5px 50px;
-			font-size: 40px;
-		}
-
-		.numeriquePad{
-			vertical-align: center;
-			margin:50px 10px 0 0;
-			padding:5px  45px;
-			width: 720px;
-		}
-	</style>
+	
 
 	<nav class="navigation-bar dark">
 		<div class="navigation-bar-content">
@@ -43,108 +25,173 @@
 	</div>
 </nav>
 
+<div class="centerCashRegister">
+
 <div class="numeriquePad">
- <div class="tile bg-lightBlue ol-transparent">
 
-  <span class="cwbts">7</span>
 
-</div>
-<div class="tile bg-lightBlue ol-transparent">
+<div data-click="transform" class="tile bg-lightBlue" ng-click="numpad(7)">
 
-  <span class="cwbts">8</span>
+                <span class="cwbts">7</span>
+            </div>
 
-</div>
-<div class="tile bg-lightBlue ol-transparent">
 
-  <span class="cwbts">9</span>
 
-</div>
-<div class="tile bg-pink ol-transparent">
+<div class="tile bg-lightBlue " ng-click="numpad(8)">
 
-  <span class="cwbts">X</span>
+  <span class="cwbts" >8</span>
 
 </div>
+<div class="tile bg-lightBlue " ng-click="numpad(9)">
 
-<div class="tile bg-lightBlue ol-transparent">
-
-  <span class="cwbts">6</span>
-
-</div>
-<div class="tile bg-lightBlue ol-transparent">
-
-  <span class="cwbts">5</span>
+  <span class="cwbts" >9</span>
 
 </div>
-<div class="tile bg-lightBlue ol-transparent">
+<div class="tile bg-lightBlue " ng-click="numpad(4)">
 
-  <span class="cwbts">4</span>
-
-</div>
-<div class="tile bg-orange ol-transparent">
-
-  <span class="cwbts">-</span>
-
-</div>
-<div class="tile bg-lightBlue ol-transparent">
-
-  <span class="cwbts">3</span>
-
-</div>
-<div class="tile bg-lightBlue ol-transparent">
-
-  <span class="cwbts">2</span>
-
-</div>
-<div class="tile bg-lightBlue ol-transparent">
-
-  <span class="cwbts">1</span>
-
-</div>
-<div class="tile bg-lightGreen ol-transparent">
-
-  <span class="cwbts">+</span>
+  <span class="cwbts" >4</span>
 
 </div>
 
-<div class="tile triple bg-lightBlue ol-transparent">
+<div class="tile bg-lightBlue " ng-click="numpad(5)">
+
+  <span class="cwbts" >5</span>
+
+</div>
+
+<div class="tile bg-lightBlue " ng-click="numpad(6)">
+
+  <span class="cwbts" >6</span>
+
+</div>
+<div class="tile bg-lightBlue " ng-click="numpad(1)">
+
+  <span class="cwbts" >1</span>
+
+</div>
+<div class="tile bg-lightBlue " ng-click="numpad(2)">
+
+  <span class="cwbts" >2</span>
+
+</div>
+<div class="tile bg-lightBlue " ng-click="numpad(3)">
+
+  <span class="cwbts" >3</span>
+
+</div>
+
+<div class="tile double bg-lightBlue" ng-click="numpad(0)">
 
   <span class="cwbts">0</span>
 
 </div>
 
-<div class="tile bg-lightRed ol-transparent">
+<div class="tile bg-lightRed " ng-click="correct()">
 
-  <span class="cwbts">=</span>
+  <span class="cwbts" >C</span>
 
 </div>
 
-<div class="tile quadro triple bg-lightRed ol-transparent">
+<div class="tableSousTotal">
 
-	<span class="cwbts">+</span>
+	<table class="table bordered hovered">
+		<thead>
+			<tr class="info">
+				<th class="text-left">TOTAL</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr class="error">
+				<td class="right">{{ totalCommande }}</td>
+			<tr>
+		<tbody>
+	</table>
+
 </div>
 </div>
+
 <div class="tableProduct">
 	<table class="table striped bordered hovered">
 		<thead>
-			<tr class="success">
-				<th class="text-left">Désignation</th>
+			<tr class="info">
 				<th class="text-left">Code Barre</th>
+				<th class="text-left">Désignation</th>				
 				<th class="text-left">Quantité</th>
 				<th class="text-left">Prix Unitaire</th>
-				<th class="text-left">Total</th>
+				<th class="text-left">Sous-total</th>
 
 			</tr>
 		</thead>
 
 		<tbody>
+			<tr class="success" ng-repeat="product in products">
+				<td>{{ product.barcode }} <i ng-click="delete(product)" class="icon-cancel-2 on-right"></i></td>
+				<td class="right">{{ product.reference }}</td>
+				<td class="right">
+						{{ product.quantity }}					
+				</td>
+				<td class="right">{{ product.price }}</td>
+				<td class="right">{{ product.total }}</td>
+				<td class="right">
+					<i ng-click="removeQuantity(product)" class="icon-minus-2 on-right"></i>
+				</td>
+				<td class="right">
+					<i ng-click="addQuantity(product)" class="icon-plus-2 on-right"></i>
+				</td>
+				
+			</tr>
+
+
+
+
+			<tr class="warning">
+				<td><input ng-model="barcode" class="trans"> </input></td>
+				<td class="right"></td>
+				<td class="right">
+					{{ quantity }}
+					
+				</td>
+				<td class="right"></td>
+				<td class="right"></td>
+				</td>
+				<td class="right">
+
+					<i ng-click="removeQuantityNewLine()" class="icon-minus-2 on-right"></i>
+				</td>
+				<td class="right">
+					<i ng-click="addQuantityNewLine()" class="icon-plus-2 on-right"></i></td>
+				
+			</tr>
+
+
 			
-			<tr class="info"><td>Yop</td><td class="right">123456</td><td class="right">2</td><td class="right">2,70</td><td class="right">5,40 €</td></tr>
-			
+
+
+
+
 		</tbody>
 	</table>
+
+
 </div>
 
 
+
+
+
+</div>
+
+                    
+	<script src="js/jquery/jquery.min.js"></script>
+	<script src="js/moment.i8n.min.js"></script>
+	<script src="js/angular.min.js"></script>
+	<script src="js/angular-route.min.js"></script>
+	<script src="js/lodash.min.js"></script>
+	<script src="js/restangular.min.js"></script>
+	<script src="app/app.js"></script>
+	<script src="app/services/AuthService.js"></script>
+	<script src="app/services/SessionService.js"></script>
+	<script src="app/controllers/ApplicationController.js"></script>
 
 
 </body>
