@@ -161,7 +161,7 @@
 
 
 			<div class="buttonColone">
-				<div ng-click="print()" class="tile bg-lightBlue">
+				<div  ng-click="print()" data-popup-target="#example-popup" id="popup_window"  class="tile bg-lightBlue" id="popup_ticket">
 					<div class="tile-content icon">
 						<i class="icon-printer"></i>
 					</div>
@@ -181,33 +181,24 @@
 		</div>
 
 
-		<div id="popUpTicket" class="divTicket">
-			<table class="table striped bordered hovered">
-				<thead>
-					<tr>
-						<th class="text-left">Code Barre</th>
-						<th class="text-left">Désignation</th>				
-						<th class="text-left">Quantité</th>
-						<th class="text-left">Prix Unitaire</th>
-						<th class="text-left">Sous-total</th>
-
-					</tr>
-				</thead>
-
-				<tbody>
-					<tr ng-repeat="product in products">
-						<td>{{ product.barcode }} <i ng-click="delete(product)" class="icon-cancel-2 on-right"></i></td>
-						<td class="right">{{ product.reference }}</td>
-						<td class="right">
-							{{ product.quantity }}
-						</td>
-						<td class="right" >{{ product.price }}</td>
-						<td class="right">{{ product.total }}</td>
-
-					</tr>
-				</tbody>
-			</table>
+		<div id="example-popup" class="popup">
+			<div class="popup-body"><span class="popup-exit"></span>
+				<div class="popup-content">
+					<table class="table striped bordered hovered">
+						<tbody>
+							<tr ng-repeat="product in products">
+								<td>{{ product.name }} <br> {{ product.quantity }} * {{ product.price }} = {{ product.total }}€</td>
+							</tr>
+							<tr>
+								<td>Total <br> {{ totalCommande }}€</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
+
+		<div class="popup-overlay"></div>
 	</div>
 	<div class="login" ng-show="! isAuthenticated()" ng-controller="LoginController">
 		<div class="form-box" id="login-box">

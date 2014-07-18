@@ -126,7 +126,6 @@ cashRegister.controller('ApplicationController', function ($scope, Restangular, 
 	}
 
 	$scope.print = function () {
-		alert("Le ticket est en cours d'impression");
 		$scope.focus();
 	}
 
