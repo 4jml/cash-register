@@ -18,7 +18,6 @@ cashRegister.controller('ApplicationController', function ($scope, Restangular, 
 
 	$scope.barcode = '';
 	$scope.quantity = 1;
-	$scope.price = 100;
 
 	$scope.totalCommande = 0;
 	$scope.products = [];
@@ -37,7 +36,6 @@ cashRegister.controller('ApplicationController', function ($scope, Restangular, 
 
 
 	$scope.check = function () {
-		// console.log('test');
 		if ($scope.barcode.length > 4) {
 			var used = false;
 			angular.forEach($scope.products, function(product, key) {
@@ -45,19 +43,15 @@ cashRegister.controller('ApplicationController', function ($scope, Restangular, 
 					used = key;
 			})
 			if (used === false) {
-				console.log('test');
-				// $scope.products.push({ barcode :$scope.barcode, price : $scope.price, quantity: $scope.quantity, total :$scope.quantity*$scope.price })
 				Restangular.one('products/barcode', $scope.barcode).get().then(function(product) {
 					product.quantity = $scope.quantity;
 					product.total = product.quantity * product.price;
 					$scope.products.push(product);
+
 					$scope.barcode = "";
 					$scope.quantity = 1;
-					$scope.totalCommande = $scope.totalCommande + $scope.quantity * $scope.price
-				},
-				function() {
-
-				})
+					$scope.totalCommande += product.total;
+				});
 			}
 			else {
 				$scope.products[used].quantity =$scope.products[used].quantity + $scope.quantity;
@@ -113,8 +107,16 @@ cashRegister.controller('ApplicationController', function ($scope, Restangular, 
 		$scope.focus();
 	}
 
-	$scope.paiment = function () {
-		alert("Paiement effectué");
+	$scope.payment = function () {
+		Restangular.all('checkout').post({
+			shop_id: SHOP_ID,
+			products: $scope.products
+		}).then(function() {
+			$scope.products = [];
+			$scope.totalCommande = 0;
+			alert("Paiement effectué");
+		});
+
 		$scope.focus();
 	}
 
@@ -127,8 +129,6 @@ cashRegister.controller('ApplicationController', function ($scope, Restangular, 
 		alert("Le ticket est en cours d'impression");
 		$scope.focus();
 	}
-
-
 
 	$scope.$watch('barcode', $scope.check);
 	$scope.$watch('quantity', $scope.check);
